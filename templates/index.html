@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHL Assessment Recommendation Engine</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>SHL Assessment Bot</h1>
+      <p>Your personalized assessment recommendations</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Input Form -->
+    <section class="input-section">
+      <form id="assessment-form" method="POST" action="{{ url_for('chat') }}">
+        <label for="question">Ask a question or describe your needs:</label>
+        <textarea id="question" name="msg" rows="3" placeholder="Type here..." required></textarea>
+        <button type="submit" class="btn-primary">Send</button>
+      </form>
+    </section>
+
+    <!-- Chat Output -->
+    <section id="chat-output" class="chat-section">
+      <!-- messages will be appended here by JS -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ current_year }} SHL Assessment Engine</p>
+    </div>
+  </footer>
+
+  <!-- jQuery (optional) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $('#assessment-form').on('submit', function(e) {
+      e.preventDefault();
+      const msg = $('#question').val().trim();
+      if (!msg) return;
+      const time = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+      // append user message
+      $('#chat-output').append(`
+        <div class="chat-message user">
+          <div class="message-text">${msg}</div>
+          <div class="timestamp">${time}</div>
+        </div>`);
+      $('#question').val('');
+      // send to /get (chat)
+      $.post("{{ url_for('chat') }}", { msg })
+        .done(function(data) {
+          $('#chat-output').append(`
+            <div class="chat-message bot">
+              <div class="message-text">${data}</div>
+              <div class="timestamp">${time}</div>
+            </div>`);
+          // auto-scroll
+          $('#chat-output').scrollTop($('#chat-output')[0].scrollHeight);
+        });
+    });
+  </script>
+</body>
+</html>

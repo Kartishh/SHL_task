@@ -1,0 +1,110 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+  }
+  .container {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  /* Header */
+  .site-header {
+    background: #004b8d;
+    color: #fff;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+  .site-header h1 {
+    margin-bottom: 0.5rem;
+  }
+  .site-header p {
+    opacity: 0.9;
+  }
+  
+  /* Input */
+  .input-section {
+    background: #fff;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .input-section label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .input-section textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .btn-primary {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  
+  /* Chat */
+  .chat-section {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+  }
+  .chat-message {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  .chat-message .message-text {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    max-width: 75%;
+  }
+  .chat-message .timestamp {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.25rem;
+  }
+  .chat-message.user {
+    justify-content: flex-end;
+  }
+  .chat-message.user .message-text {
+    background: #007bff;
+    color: #fff;
+    border-bottom-right-radius: 0;
+  }
+  .chat-message.bot {
+    justify-content: flex-start;
+  }
+  .chat-message.bot .message-text {
+    background: #e9ecef;
+    color: #333;
+    border-bottom-left-radius: 0;
+  }
+  
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    color: #777;
+  }
+  
